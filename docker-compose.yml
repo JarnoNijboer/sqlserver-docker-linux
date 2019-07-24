@@ -1,0 +1,24 @@
+version: "3.7"
+services:
+  sqlserver:
+    build:
+      context: ./build
+      dockerfile: Dockerfile
+    environment:
+      SA_PASSWORD: "Passw0rd"
+      ACCEPT_EULA: "Y"
+      MSSQL_AGENT_ENABLED: "true"
+    ports:
+      - "1433:1433"
+    container_name: sqlserver
+    hostname: sqlserver
+    volumes:
+      - .\backups:/var/opt/mssql/data/backups
+      - /var/lib/docker/volumes/mssqluser/_data:/var/opt/sqlserver
+      - /var/lib/docker/volumes/mssqlsystem/_data:/var/opt/mssql
+
+volumes:
+  mssqluser:
+    name: mssqluser
+  mssqlsystem:
+    name: mssqlsystem

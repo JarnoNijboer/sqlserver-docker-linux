@@ -11,11 +11,17 @@ services:
     ports:
       - "1433:1433"
     container_name: sqlserver
-    hostname: sqlserver
+    hostname: mssql
     volumes:
-      - .\backups:/var/opt/mssql/data/backups
-      - /var/lib/docker/volumes/mssqluser/_data:/var/opt/sqlserver
-      - /var/lib/docker/volumes/mssqlsystem/_data:/var/opt/mssql
+      - type: volume
+        source: mssqluser
+        target: /var/opt/sqlserver
+      - type: volume
+        source: mssqlsystem
+        target: /var/opt/mssql
+      - type: bind
+        source: ./backups
+        target: /var/opt/mssql/data/backups
 
 volumes:
   mssqluser:

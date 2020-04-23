@@ -16,4 +16,4 @@ SQL Server Linux hosted on Docker
 Yes, by using docker volumes all the data of sql server is stored outside the container. Deleting and creating a new container doesn't remove the data. The data is lost when the docker volumes are deleted
 
 ### Can I restore an existing database?
-Yes, you can put the `.bak` in the `backups` folder and they should appear in sql server under `data/backups`
+Yes, you can put the `.bak` in the `backups` folder and they should appear in sql server beneath `data/backups`
